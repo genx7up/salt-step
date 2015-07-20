@@ -358,13 +358,6 @@ public class SaltApiNodeStepPlugin implements NodeStepPlugin {
         checkNotEmpty(SALT_API_EAUTH_OPTION_NAME, eAuth, SaltApiNodeStepFailureReason.ARGUMENTS_MISSING, entry);
         checkNotEmpty(SALT_USER_OPTION_NAME, user, SaltApiNodeStepFailureReason.ARGUMENTS_MISSING, entry);
         checkNotEmpty(SALT_PASSWORD_OPTION_NAME, password, SaltApiNodeStepFailureReason.ARGUMENTS_MISSING, entry);
-
-        UrlValidator urlValidator = new UrlValidator(endPointSchemes, UrlValidator.ALLOW_LOCAL_URLS);
-        if (!urlValidator.isValid(saltEndpoint)) {
-            throw new SaltStepValidationException(SALT_API_END_POINT_OPTION_NAME, String.format(
-                    "%s is not a valid endpoint.", saltEndpoint), SaltApiNodeStepFailureReason.ARGUMENTS_INVALID,
-                    entry.getNodename());
-        }
     }
 
     protected String waitForJidResponse(HttpClient client, String authToken, String jid, String minionId)
